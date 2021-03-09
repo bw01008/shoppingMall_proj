@@ -1,6 +1,6 @@
 package shoppingMall_proj.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Sale {
 	// Field
@@ -9,6 +9,8 @@ public class Sale {
 	private Customer csNo;
 	private Product pCode;
 	private int saleAmount;
+	private int totalSelling;
+	private int totalProfit;
 
 	// Constructor
 	public Sale() {
@@ -70,13 +72,13 @@ public class Sale {
 
 	// Method
 	// 판매액
-	public double selling() {
+	public int selling() {
 		Product p = new Product();
-		return (p.getPrice() * 1.1) * saleAmount;
+		return (int) ((p.getPrice() * 1.1) * saleAmount);
 	}
 
 	// 이익금액
-	public double profit() {
+	public int profit() {
 		Product p = new Product();
 		return selling() - (p.getPrice() * saleAmount);
 	}
@@ -92,16 +94,16 @@ public class Sale {
 	}
 
 	// 총 판매액
-	public double totalSelling() {
+	public int totalSelling() {
 		Product p = new Product();
-		return (p.getPrice() * 1.1) * saleAmount;
+		return (int) ((p.getPrice() * 1.1) * saleAmount);
 	}
 
 	// 총 이익금액
 
-	public double totalProfit() {
+	public int totalProfit() {
 		Product p = new Product();
-		return (p.getPrice() * 1.1) * saleAmount;
+		return (int) ((p.getPrice() * 1.1) * saleAmount);
 	}
 
 	// toString

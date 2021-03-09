@@ -25,13 +25,15 @@ dependencies {	//Project and External Dependencies 라이브러리에서 확인�
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.49'
     testImplementation 'junit:junit:4.13'
+    // https://mvnrepository.com/artifact/com.toedter/jcalendar
+	implementation group: 'com.toedter', name: 'jcalendar', version: '1.4'
 
 }
 
 jar {
 	version = 1.0
-	mainClassName= 'shoppingMall_proj.temp'
-	baseName= 'temp'
+	mainClassName= 'shoppingMall_proj.Temp'
+	baseName= 'Temp'
 	appendix = 'bin'
 	
 	manifest{

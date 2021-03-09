@@ -57,7 +57,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public Customer selectCustomerByNo(Customer cs) {
 		String sql = "select csNo, csName, birth, phoneNo, sex from customer where csNo = ?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, cs.getCsNo());
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {

@@ -14,5 +14,5 @@ public interface ProductDao {
 	// update 추상메서드
 	int updateProduct(Product p);
 	// delete 추상메서드
-	int deleteProduct(int pcode);
+	int deleteProduct(String pcode);
 }

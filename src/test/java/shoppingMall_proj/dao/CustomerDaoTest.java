@@ -22,7 +22,7 @@ public class CustomerDaoTest {
 	}
 
 	@Test
-	public void test01SelectCustomerByAll() {
+	public void test05SelectCustomerByAll() {
 		System.out.printf("%s()%n", "test01SelectCustomerByAll");
 		List<Customer> csList = dao.selectCustomerByAll();
 		Assert.assertNotNull(csList);
@@ -34,7 +34,7 @@ public class CustomerDaoTest {
 	}
 
 	@Test
-	public void test02SelectCustomerByNo() {
+	public void test04SelectCustomerByNo() {
 		System.out.printf("%s()%n", "test02SelectCustomerByNo");
 		Customer cs = new Customer(12001);
 		Customer searchCustomer = dao.selectCustomerByNo(cs);
@@ -43,7 +43,7 @@ public class CustomerDaoTest {
 	}
 
 	@Test
-	public void test03InsertCustomer() {
+	public void test01InsertCustomer() {
 		System.out.printf("%s()%n", "test03InsertCustomer");
 		Customer newCustomer = new Customer(12011, "우정아", new Date(19931108), "01077731663", 0);
 		int res = dao.insertCustomer(newCustomer);
@@ -53,7 +53,7 @@ public class CustomerDaoTest {
 	}
 
 	@Test
-	public void test04UpdateCustomer() {
+	public void test02UpdateCustomer() {
 		System.out.printf("%s()%n", "test04UpdateCustomer");
 		Customer newCustomer = new Customer(12011, "우정아", new Date(19931108), "01077731663", 1);
 		int res = dao.updateCustomer(newCustomer);
@@ -62,7 +62,7 @@ public class CustomerDaoTest {
 	}
 
 	@Test
-	public void test05DeleteCustomer() {
+	public void test03DeleteCustomer() {
 		System.out.printf("%s()%n", "test05DeleteCustomer");
 		int res = dao.deleteCustomer(12011);
 		Assert.assertEquals(1, res);

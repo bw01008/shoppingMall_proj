@@ -50,3 +50,7 @@ insert into sale values
 (16, 20120501, 12003, 'PB', 7);
 
 select * from sale;
+
+insert into login values ('manager', '1234');
+
+select * from login;

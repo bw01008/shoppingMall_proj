@@ -1,4 +1,4 @@
-package shoppingMall_proj.dto.util;
+package shoppingMall_proj.util;
 
 import java.sql.Connection;
 
@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import shoppingMall_proj.dto.util.JdbcUtil;
 
 public class JdbcUtilTest {
 

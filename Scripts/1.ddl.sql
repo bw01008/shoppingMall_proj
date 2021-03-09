@@ -77,3 +77,14 @@ ALTER TABLE ShoppingMall.sale
 			pCode -- 제품코드
 		);
 	
+-- 로그인
+create table login (
+	ID varchar(20) primary key not null,
+	password varchar(20)
+);
+
+
+	
+	
+	
+select user(), database();

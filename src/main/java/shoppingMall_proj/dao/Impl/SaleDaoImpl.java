@@ -1,39 +1,145 @@
 package shoppingMall_proj.dao.Impl;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import shoppingMall_proj.dao.SaleDao;
+import shoppingMall_proj.dto.Customer;
+import shoppingMall_proj.dto.Product;
 import shoppingMall_proj.dto.Sale;
+import shoppingMall_proj.dto.util.JdbcUtil;
 
 public class SaleDaoImpl implements SaleDao {
+	private static SaleDaoImpl instance = new SaleDaoImpl();
+
+	private SaleDaoImpl() {
+
+	}
+
+	public static SaleDaoImpl getInstance() {
+		return instance;
+	}
 
 	@Override
 	public List<Sale> selectSaleByAll() {
-		// TODO Auto-generated method stub
+		String sql = "select orderNo, date, csNo, pCode, saleAmount from sale";
+		try (Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				List<Sale> list = new ArrayList<>();
+				do {
+					list.add(getSale(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	private Sale getSale(ResultSet rs) throws SQLException {
+		int orderNo = rs.getInt("orderNo");
+		Date date = rs.getDate("date");
+		Customer csNo = new Customer(rs.getInt("csNo"));
+		Product pCode = new Product(rs.getString("pCode"));
+		int saleAmount = rs.getInt("saleAmount");
+
+		try {
+			csNo.setCsName(rs.getString("csName"));
+		} catch (SQLException e) {
+		}
+		try {
+			csNo.setBirth(rs.getDate("birth"));
+		} catch (SQLException e) {
+		}
+		try {
+			csNo.setPhoneNo(rs.getString("phoneNo"));
+		} catch (SQLException e) {
+		}
+		try {
+			csNo.setSex(rs.getInt("sex"));
+		} catch (SQLException e) {
+		}
+		try {
+			pCode.setpName(rs.getString("pName"));
+		} catch (SQLException e) {
+		}
+		try {
+			pCode.setPrice(rs.getInt("price"));
+		} catch (SQLException e) {
+		}
+		try {
+			pCode.setStockAmount(rs.getInt("stockAmount"));
+		} catch (SQLException e) {
+		}
+
+		return new Sale(orderNo, date, csNo, pCode, saleAmount);
+	}
+
+	@Override
+	public Sale selectSaleByNo(Sale sale) {
+		String sql = "select orderNo, date, csNo, pCode, saleAmount from sale where orderNo = ?";
+		try (Connection con = JdbcUtil.getConnection(); 
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, sale.getOrderNo());
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return getSale(rs);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public Sale selectSaleByNo(Sale od) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public int insertSale(Sale sale) {
+		String sql = "insert into sale values (?, ?, ?, ?, ?)";
+		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, sale.getOrderNo());
+			pstmt.setDate(2, sale.getDate());
+			pstmt.setInt(3, sale.getCsNo().getCsNo());
+			pstmt.setString(4, sale.getpCode().getpCode());
+			pstmt.setInt(5, sale.getSaleAmount());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-	@Override
-	public int insertSale(Sale od) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateSale(Sale od) {
-		// TODO Auto-generated method stub
+	public int updateSale(Sale sale) {
+		String sql = "update sale set saleAmount = ? where orderNo = ?";
+		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, sale.getSaleAmount());
+			pstmt.setInt(2, sale.getOrderNo());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	@Override
 	public int deleteSale(int orderNo) {
-		// TODO Auto-generated method stub
+		String sql = "delete from sale where orderNo =?";
+		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, orderNo);
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

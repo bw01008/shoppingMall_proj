@@ -1,31 +1,40 @@
 package shoppingMall_proj.UI;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.sql.Date;
+import java.util.List;
+
+import javax.swing.JPanel;
+
+import shoppingMall_proj.dao.Impl.SaleDaoImpl;
+import shoppingMall_proj.dto.Sale;
+import shoppingMall_proj.panel.SaleMain_ResultPanel;
 import shoppingMall_proj.panel.SaleMain_SearchPanel;
 import shoppingMall_proj.panel.SaleMain_TablePanel;
-import shoppingMall_proj.panel.SaleMain_ResultPanel;
 
 public class Sale_Main extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	private List<Sale> saleList = SaleDaoImpl.getInstance().selectViewByDate(new Sale(new Date(2012, 04, 12)));
+	
+	
+	
 	public Sale_Main() {
-
+		
 		initialize();
 	}
 	private void initialize() {
 		setLayout(new BorderLayout(0, 0));
 		
-		SaleMain_SearchPanel pNorth = new SaleMain_SearchPanel();
+		SaleMain_SearchPanel pNorth = new SaleMain_SearchPanel();	//몹핑
 		add(pNorth, BorderLayout.NORTH);
-		
-		SaleMain_TablePanel pCenter = new SaleMain_TablePanel();
+		//////////////////List추가
+		SaleMain_TablePanel pCenter = new SaleMain_TablePanel();	//몹핑
+		pCenter.setList(saleList);
 		add(pCenter, BorderLayout.CENTER);
 		
-		SaleMain_ResultPanel pSouth = new SaleMain_ResultPanel();
+		SaleMain_ResultPanel pSouth = new SaleMain_ResultPanel();	//몹핑
 		add(pSouth, BorderLayout.SOUTH);
+		
+		
 	}
 
 }

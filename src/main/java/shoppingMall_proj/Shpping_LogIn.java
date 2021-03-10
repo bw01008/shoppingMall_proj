@@ -15,13 +15,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import shoppingMall_proj.dao.Impl.LoginDaoImpl;
+
 @SuppressWarnings("serial")
 public class Shpping_LogIn extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField tfID;
 	private JPasswordField pfPass;
-	private JPasswordField pfPass2;
 	private JButton btnLogin;
 	
 	/**
@@ -83,13 +84,6 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		panel.add(pfPass);
 		pfPass.setColumns(10);
 		
-		JLabel lblPass2 = new JLabel("Password ConFirm");
-		panel.add(lblPass2);
-		
-		pfPass2 = new JPasswordField();
-		panel.add(pfPass2);
-		pfPass2.setColumns(10);
-		
 		JPanel panel_1 = new JPanel();
 		pCenter.add(panel_1);
 		
@@ -104,11 +98,13 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnLogin(ActionEvent arg0) {
+		
+		
 		String ID = tfID.getText();
+		
 		String ps1 = new String(pfPass.getPassword());
-		String ps2 = new String(pfPass2.getPassword());
 				
-		if(ps1.equals(ps2)) {
+		if(true) {
 			Shopping_Main frame = new Shopping_Main();
 			frame.setVisible(true);
 			
@@ -116,7 +112,6 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
 			tfID.setText("");
 			pfPass.setText("");
-			pfPass2.setText("");
 			tfID.requestFocus();
 		}
 	}

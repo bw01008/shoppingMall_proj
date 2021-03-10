@@ -1,11 +1,12 @@
 package shoppingMall_proj.dao.Impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import shoppingMall_proj.dao.SaleDao;
@@ -47,7 +48,7 @@ public class SaleDaoImpl implements SaleDao {
 
 	private Sale getSale(ResultSet rs) throws SQLException {
 		int orderNo = rs.getInt("orderNo");
-		Date date = rs.getDate("date");
+		Date date = rs.getTimestamp("date");
 		Customer csNo = new Customer(rs.getInt("csNo"));
 		Product pCode = new Product(rs.getString("pCode"));
 		int saleAmount = rs.getInt("saleAmount");
@@ -88,7 +89,7 @@ public class SaleDaoImpl implements SaleDao {
 	public Sale selectSaleByNo(Sale sale) {
 		String sql = "select orderNo, date, csNo, pCode, saleAmount from sale where orderNo = ?";
 		try (Connection con = JdbcUtil.getConnection(); 
-			PreparedStatement pstmt = con.prepareStatement(sql)) {
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, sale.getOrderNo());
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
@@ -104,9 +105,10 @@ public class SaleDaoImpl implements SaleDao {
 	@Override
 	public int insertSale(Sale sale) {
 		String sql = "insert into sale values (?, ?, ?, ?, ?)";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = JdbcUtil.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, sale.getOrderNo());
-			pstmt.setDate(2, sale.getDate());
+			pstmt.setTimestamp(2, new Timestamp(sale.getDate().getTime()));
 			pstmt.setInt(3, sale.getCsNo().getCsNo());
 			pstmt.setString(4, sale.getpCode().getpCode());
 			pstmt.setInt(5, sale.getSaleAmount());
@@ -121,7 +123,8 @@ public class SaleDaoImpl implements SaleDao {
 	@Override
 	public int updateSale(Sale sale) {
 		String sql = "update sale set saleAmount = ? where orderNo = ?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = JdbcUtil.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, sale.getSaleAmount());
 			pstmt.setInt(2, sale.getOrderNo());
 			return pstmt.executeUpdate();
@@ -134,7 +137,8 @@ public class SaleDaoImpl implements SaleDao {
 	@Override
 	public int deleteSale(int orderNo) {
 		String sql = "delete from sale where orderNo =?";
-		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		try (Connection con = JdbcUtil.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, orderNo);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -143,4 +147,65 @@ public class SaleDaoImpl implements SaleDao {
 		return 0;
 	}
 
-}
+	@Override // 날짜별 조회
+	public List<Sale> selectViewByDate(Sale sale) {
+		String sql = "select date, csNo, csName, phoneNo, pCode, saleAmount, selling from vw_full_sale where date = ?";
+		try (Connection con = JdbcUtil.getConnection(); 
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setTimestamp(1, new Timestamp(sale.getDate().getTime()));	
+			try (ResultSet rs = pstmt.executeQuery()) {
+
+				if (rs.next()) {
+					List<Sale> list = new ArrayList<Sale>();
+					do {
+						list.add(getSale(rs));
+					} while (rs.next());
+					return list;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public List<Sale> selectViewByProduct() {
+		String sql = "select date, pCode, pName, saleAmount, price, selling, profit from vw_full_sale";
+		try (Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				List<Sale> list = new ArrayList<Sale>();
+				do {
+					list.add(getSale(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Sale> selectViewByDetail() {
+		String sql = "select date, pCode, pName, csName, saleAmount, price, selling, profit from vw_full_sale";
+		try (Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()) {
+			if (rs.next()) {
+				List<Sale> list = new ArrayList<Sale>();
+				do {
+					list.add(getSale(rs));
+				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}// end of class

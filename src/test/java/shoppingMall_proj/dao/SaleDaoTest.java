@@ -1,7 +1,7 @@
 package shoppingMall_proj.dao;
 
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
@@ -47,7 +47,7 @@ public class SaleDaoTest {
 	@Test
 	public void test01InsertSale() {
 		System.out.printf("%s()%n","test01InsertSale");
-		Sale newSale = new Sale(17, new Date(20120502), new Customer(12007), new Product("PA"), 1);
+		Sale newSale = new Sale(17, new Date(112, 4, 20), new Customer(12007), new Product("PA"), 1);
 		int res = dao.insertSale(newSale);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectSaleByNo(newSale));
@@ -56,7 +56,7 @@ public class SaleDaoTest {
 	@Test
 	public void test02UpdateSale() {
 		System.out.printf("%s()%n","test02UpdateSale");
-		Sale newSale = new Sale(17, new Date(20120502), new Customer(12007), new Product("PA"), 2);
+		Sale newSale = new Sale(17, new Date(112, 4, 20), new Customer(12007), new Product("PA"), 2);
 		int res = dao.updateSale(newSale);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectSaleByNo(newSale));
@@ -68,6 +68,15 @@ public class SaleDaoTest {
 		int res = dao.deleteSale(17);
 		Assert.assertEquals(1, res);
 //		dao.selectSaleByAll().stream().forEach(System.out::println);
+	}
+	
+	@Test
+	public void test06selectViewByDate() {
+		System.out.printf("%s()%n", "test06selectViewByDate");
+		Sale sale = new Sale(new Date(112, 4, 20));
+		List<Sale> list = dao.selectViewByDate(sale);
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
 	}
 
 }

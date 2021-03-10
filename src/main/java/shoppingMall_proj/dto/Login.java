@@ -10,12 +10,12 @@ public class Login {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Login(String iD) {
-		ID = iD;
+	public Login(String ID) {
+		ID = ID;
 	}
 
-	public Login(String iD, String password) {
-		ID = iD;
+	public Login(String ID, String password) {
+		ID = ID;
 		Password = password;
 	}
 	
@@ -24,8 +24,8 @@ public class Login {
 		return ID;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		ID = ID;
 	}
 
 	public String getPassword() {

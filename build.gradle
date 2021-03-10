@@ -32,8 +32,8 @@ dependencies {	//Project and External Dependencies 라이브러리에서 확인�
 
 jar {
 	version = 1.0
-	mainClassName= 'shoppingMall_proj.Temp'
-	baseName= 'Temp'
+	mainClassName= 'shoppingMall_proj.test'
+	baseName= 'test'
 	appendix = 'bin'
 	
 	manifest{

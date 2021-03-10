@@ -46,6 +46,7 @@ public class Product {
 	public void setStockAmount(int stockAmount) {
 		this.stockAmount = stockAmount;
 	}
+
 	
 	//toString
 	@Override

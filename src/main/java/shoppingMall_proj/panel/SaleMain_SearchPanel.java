@@ -17,6 +17,7 @@ import shoppingMall_proj.UI.SearchByProduct_Main;
 public class SaleMain_SearchPanel extends JPanel implements ActionListener {
 	private JButton btnProduct;
 	private JButton btnDetail;
+	private JButton btnSearch;
 
 	/**
 	 * Create the panel.
@@ -49,11 +50,15 @@ public class SaleMain_SearchPanel extends JPanel implements ActionListener {
 		JDateChooser dateChooser = new JDateChooser();
 		psearchDate.add(dateChooser);
 
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		psearchDate.add(btnSearch);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnSearch) {
+			actionPerformedBtnSearch(arg0);
+		}
 		if (arg0.getSource() == btnDetail) {
 			actionPerformedButton_1(arg0);
 		}
@@ -70,5 +75,9 @@ public class SaleMain_SearchPanel extends JPanel implements ActionListener {
 	protected void actionPerformedButton_1(ActionEvent arg0) {
 		SearchByDetail_Main frame = new SearchByDetail_Main();
 		frame.setVisible(true);
+	}
+	//날짜별 조회 검색 > 
+	protected void actionPerformedBtnSearch(ActionEvent arg0) {
+		
 	}
 }

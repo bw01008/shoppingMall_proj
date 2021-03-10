@@ -3,10 +3,16 @@ package shoppingMall_proj.panel;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+
+import shoppingMall_proj.dto.Sale;
+
 import java.awt.GridLayout;
 
+@SuppressWarnings("serial")
 public class SaleMain_ResultPanel extends JPanel {
 
+	private JLabel lblTotalSaleAmount2;
+	private JLabel lblTotalSelling2;
 	/**
 	 * Create the panel.
 	 */
@@ -23,8 +29,10 @@ public class SaleMain_ResultPanel extends JPanel {
 		JLabel lblTotalSaleAmount1 = new JLabel("총 주문수량 : ");
 		pLeft.add(lblTotalSaleAmount1);
 		
-		JLabel lblTotalSaleAmount2 = new JLabel("");
+		lblTotalSaleAmount2 = new JLabel("");
 		pLeft.add(lblTotalSaleAmount2);
+//		lblTotalSaleAmount2.setText();	- 총 주문 수량 결과
+		
 		
 		JPanel pRight = new JPanel();
 		add(pRight);
@@ -32,8 +40,9 @@ public class SaleMain_ResultPanel extends JPanel {
 		JLabel lblTotalSelling1 = new JLabel("총 판매액 : ");
 		pRight.add(lblTotalSelling1);
 		
-		JLabel lblTotalSelling2 = new JLabel("");
+		lblTotalSelling2 = new JLabel("");
 		pRight.add(lblTotalSelling2);
+//		lblTotalSelling2.setText();	 - 총 판매액 결과
 	}
 
 }

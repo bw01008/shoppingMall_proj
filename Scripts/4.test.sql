@@ -28,5 +28,38 @@ delete from sale where orderNo =17;
 
 select ID, password from login;
 select ID, password from login where ID = 'manager';
+insert into login values('root', 'rootroot');
+update login set password = '0000' where id = 'root';
+delete from login where id = 'root';
 
+create or replace view vw_full_Sale
+as 
+select s.orderNo, 
+	   s.date, 
+	   s.csNo, 
+	   c.csName, 
+	   c.birth, 
+	   c.phoneNo, 
+	   c.sex, 
+	   s.pCode, 
+	   p.pName, 
+	   p.price, 
+	   s.saleAmount, 
+	   p.stockAmount,
+	   (p.price * s.saleAmount)*1.1 'selling',
+	   ((p.price * s.saleAmount)*1.1) - (p.price * s.saleAmount) 'profit'
+from sale s join customer c on s.csNo = c.csNo
+	 left join product p on s.pCode = p.pCode;
+	
+	
+select * from vw_full_Sale;
 
+select date, csNo, csName, phoneNo, pCode, saleAmount, selling from vw_full_sale where date = 20120420; -- Sale Main 테이블
+select date, pCode, pName, saleAmount, price, selling, profit from vw_full_sale;	-- 제품별조회 테이블
+select date, pCode, pName, csName, saleAmount, price, selling, profit from vw_full_sale; -- 상세조회 테이블
+
+select * from product;
+select * from sale;
+update product set stockAmount = 98 where pCode = (select pCode from sale where orderNo = 1);
+update sale set saleAmount = 2 where orderNo = 1;
+	

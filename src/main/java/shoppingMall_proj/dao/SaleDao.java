@@ -15,4 +15,8 @@ public interface SaleDao {
 	int updateSale(Sale sale);
 	// delete 추상메서드
 	int deleteSale(int orderNo);
+	
+	List<Sale> selectViewByDate(Sale sale);
+	List<Sale> selectViewByProduct();
+	List<Sale> selectViewByDetail();
 }

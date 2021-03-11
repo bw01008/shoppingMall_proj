@@ -1,14 +1,14 @@
-package shoppingMall_proj.UI;
+package shoppingMall_proj.UISale;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import shoppingMall_proj.panel.SBP.SearchByProduct_searchPanel;
-import shoppingMall_proj.panel.SBP.SearchByProduct_TablePanel;
-import shoppingMall_proj.panel.SBP.SearchByProduct_ResultPanel;
+
+import shoppingMall_proj.Salepanel.SBP.SearchByProduct_ResultPanel;
+import shoppingMall_proj.Salepanel.SBP.SearchByProduct_TablePanel;
+import shoppingMall_proj.Salepanel.SBP.SearchByProduct_searchPanel;
 
 @SuppressWarnings("serial")
 public class SearchByProduct_Main extends JFrame {
@@ -26,6 +26,8 @@ public class SearchByProduct_Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
+
 		
 		SearchByProduct_searchPanel pNorth = new SearchByProduct_searchPanel();
 		contentPane.add(pNorth, BorderLayout.NORTH);

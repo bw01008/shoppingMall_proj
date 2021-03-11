@@ -1,4 +1,4 @@
-package shoppingMall_proj.panel;
+package shoppingMall_proj.Salepanel;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

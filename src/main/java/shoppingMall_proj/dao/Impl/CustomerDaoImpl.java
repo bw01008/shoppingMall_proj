@@ -48,7 +48,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	private Customer getCustomer(ResultSet rs) throws SQLException {
 		int csNo = rs.getInt("csNo");
 		String csName = rs.getString("csName");
-		Date birth = rs.getDate("birth");
+		String birth = rs.getString("birth");
 		String phoneNo = rs.getString("phoneNo");
 		int sex = rs.getInt("sex");
 		return new Customer(csNo, csName, birth, phoneNo, sex);
@@ -79,7 +79,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, cs.getCsNo());
 			pstmt.setString(2, cs.getCsName());
-			pstmt.setDate(3, cs.getBirth());
+			pstmt.setString(3, cs.getBirth());
 			pstmt.setNString(4, cs.getPhoneNo());
 			pstmt.setInt(5, cs.getSex());
 			return pstmt.executeUpdate();

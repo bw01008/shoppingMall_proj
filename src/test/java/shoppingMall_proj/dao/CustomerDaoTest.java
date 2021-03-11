@@ -45,7 +45,7 @@ public class CustomerDaoTest {
 	@Test
 	public void test01InsertCustomer() {
 		System.out.printf("%s()%n", "test03InsertCustomer");
-		Customer newCustomer = new Customer(12011, "우정아", new Date(19931108), "01077731663", 0);
+		Customer newCustomer = new Customer(12011, "우정아", "19931108", "01077731663", 0);
 		int res = dao.insertCustomer(newCustomer);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectCustomerByNo(newCustomer));
@@ -55,7 +55,7 @@ public class CustomerDaoTest {
 	@Test
 	public void test02UpdateCustomer() {
 		System.out.printf("%s()%n", "test04UpdateCustomer");
-		Customer newCustomer = new Customer(12011, "우정아", new Date(19931108), "01077731663", 1);
+		Customer newCustomer = new Customer(12011, "우정아", "19931108", "01077731663", 1);
 		int res = dao.updateCustomer(newCustomer);
 		Assert.assertEquals(1, res);
 		System.out.println(dao.selectCustomerByNo(newCustomer));

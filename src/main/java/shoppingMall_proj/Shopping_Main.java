@@ -6,8 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import shoppingMall_proj.UISale.Sale_Main;
+
 import javax.swing.JTabbedPane;
-import shoppingMall_proj.UI.Sale_Main;
 
 @SuppressWarnings("serial")
 public class Shopping_Main extends JFrame {

@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import shoppingMall_proj.dao.Impl.LoginDaoImpl;
+import shoppingMall_proj.dto.Login;
 
 @SuppressWarnings("serial")
 public class Shpping_LogIn extends JFrame implements ActionListener {
@@ -25,9 +27,6 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 	private JPasswordField pfPass;
 	private JButton btnLogin;
 	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -107,6 +106,7 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		if(true) {
 			Shopping_Main frame = new Shopping_Main();
 			frame.setVisible(true);
+			
 			
 		}else {
 			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");

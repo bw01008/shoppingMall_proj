@@ -1,9 +1,10 @@
-package shoppingMall_proj.panel.SBP;
+package shoppingMall_proj.Salepanel.SBP;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class SearchByProduct_ResultPanel extends JPanel {
 
 	/**

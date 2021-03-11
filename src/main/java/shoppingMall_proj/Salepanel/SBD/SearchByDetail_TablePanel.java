@@ -1,17 +1,17 @@
-package shoppingMall_proj.panel.SBP;
+package shoppingMall_proj.Salepanel.SBD;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class SearchByProduct_TablePanel extends JPanel {
+public class SearchByDetail_TablePanel extends JPanel {
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public SearchByProduct_TablePanel() {
+	public SearchByDetail_TablePanel() {
 
 		initialize();
 	}

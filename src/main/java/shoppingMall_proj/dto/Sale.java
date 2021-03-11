@@ -1,11 +1,9 @@
 package shoppingMall_proj.dto;
 
-import java.util.Date;
-
 public class Sale {
 	// Field
 	private int orderNo;
-	private Date date;
+	private String date;
 	private Customer csNo;
 	private Product pCode;
 	private int saleAmount;
@@ -22,11 +20,11 @@ public class Sale {
 	}
 
 	// 날짜별 조회
-	public Sale(Date date) {
+	public Sale(String date) {
 		this.date = date;
 	}
 
-	public Sale(int orderNo, Date date, Customer csNo, Product pCode, int saleAmount) {
+	public Sale(int orderNo, String date, Customer csNo, Product pCode, int saleAmount) {
 		this.orderNo = orderNo;
 		this.date = date;
 		this.csNo = csNo;
@@ -43,11 +41,11 @@ public class Sale {
 		this.orderNo = orderNo;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

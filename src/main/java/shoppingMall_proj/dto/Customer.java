@@ -6,7 +6,7 @@ public class Customer {
 	//Fields
 	private int csNo;
 	private String csName;
-	private Date birth;
+	private String birth;
 	private String phoneNo;
 	private int sex;
 	
@@ -19,7 +19,7 @@ public class Customer {
 		this.csNo = csNo;
 	}
 	
-	public Customer(int csNo, String csName, Date birth, String phoneNo, int sex) {
+	public Customer(int csNo, String csName, String birth, String phoneNo, int sex) {
 		this.csNo = csNo;
 		this.csName = csName;
 		this.birth = birth;
@@ -45,12 +45,12 @@ public class Customer {
 		this.csName = csName;
 	}
 
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Date birth) {
-		this.birth = birth;
+	public void setBirth(String date) {
+		this.birth = date;
 	}
 
 	public String getPhoneNo() {

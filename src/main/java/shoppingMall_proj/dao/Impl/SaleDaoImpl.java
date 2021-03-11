@@ -47,18 +47,22 @@ public class SaleDaoImpl implements SaleDao {
 	}
 
 	private Sale getSale(ResultSet rs) throws SQLException {
-		int orderNo = rs.getInt("orderNo");
-		Date date = rs.getTimestamp("date");
+		int orderNo = 0;
+		String date = rs.getString("date");
 		Customer csNo = new Customer(rs.getInt("csNo"));
 		Product pCode = new Product(rs.getString("pCode"));
 		int saleAmount = rs.getInt("saleAmount");
-
+		
+		try {
+			orderNo = rs.getInt("orderNo");
+		} catch (SQLException e) {
+		}
 		try {
 			csNo.setCsName(rs.getString("csName"));
 		} catch (SQLException e) {
 		}
 		try {
-			csNo.setBirth(rs.getDate("birth"));
+			csNo.setBirth(rs.getString("birth"));
 		} catch (SQLException e) {
 		}
 		try {
@@ -108,7 +112,7 @@ public class SaleDaoImpl implements SaleDao {
 		try (Connection con = JdbcUtil.getConnection(); 
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, sale.getOrderNo());
-			pstmt.setTimestamp(2, new Timestamp(sale.getDate().getTime()));
+			pstmt.setString(2, sale.getDate());
 			pstmt.setInt(3, sale.getCsNo().getCsNo());
 			pstmt.setString(4, sale.getpCode().getpCode());
 			pstmt.setInt(5, sale.getSaleAmount());
@@ -152,7 +156,7 @@ public class SaleDaoImpl implements SaleDao {
 		String sql = "select date, csNo, csName, phoneNo, pCode, saleAmount, selling from vw_full_sale where date = ?";
 		try (Connection con = JdbcUtil.getConnection(); 
 			PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setTimestamp(1, new Timestamp(sale.getDate().getTime()));	
+			pstmt.setString(1, sale.getDate());	
 			try (ResultSet rs = pstmt.executeQuery()) {
 
 				if (rs.next()) {

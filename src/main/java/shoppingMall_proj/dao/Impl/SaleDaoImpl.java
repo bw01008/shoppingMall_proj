@@ -45,48 +45,43 @@ public class SaleDaoImpl implements SaleDao {
 		return null;
 
 	}
-
 	private Sale getSale(ResultSet rs) throws SQLException {
 		int orderNo = 0;
-		String date = rs.getString("date");
-		Customer csNo = new Customer(rs.getInt("csNo"));
-		Product pCode = new Product(rs.getString("pCode"));
-		int saleAmount = rs.getInt("saleAmount");
-		
+		String date = null;
+		Customer csNo = null;
+		Product pCode = null;
+		int saleAmount = 0;
+		int Selling = 0;
+		int Profit = 0;
+		/*
+		 * 예외처리를 해주는 이유
+		 * getSale()메소드는 sale객체를 생성해서 반환해주는데 이때 생성자는 매개변수로 Sale클래스에 선언된 모든 필드가 들어가있다.
+		 * 만약 view를 생성해서 쿼리문을 작성하거나 혹은 검색하고자 하는게 모든 필드를 포함하지 않을 경우 getSale()메소드를 호출하면
+		 * 칼럼을 찾을 수 없다는 오류가 발생한다.
+		 * 그럴땐 getSale**()메소드를 생성해서 원하는 부분만 매개변수로 하는 생성자로 객체를 반환해주게 하면되지만 결국 코드 중복이 일어난다.
+		 * try-catch문의 경우 try문에서 예외가 발생하지 않을 경우에 그냥 지나가고, 예외발생시, 예외를 던져주면 된다.
+		 * try-catch문은*/
 		try {
+			System.out.println(rs.getString("csName"));
+
+			Profit = rs.getInt("profit");
+			Selling = rs.getInt("selling");
+			saleAmount = rs.getInt("saleAmount");
+			pCode = new Product(rs.getString("pCode"));
+			csNo = new Customer(rs.getInt("csNo"));
+			date = rs.getString("date");
 			orderNo = rs.getInt("orderNo");
-		} catch (SQLException e) {
-		}
-		try {
 			csNo.setCsName(rs.getString("csName"));
-		} catch (SQLException e) {
-		}
-		try {
 			csNo.setBirth(rs.getString("birth"));
-		} catch (SQLException e) {
-		}
-		try {
 			csNo.setPhoneNo(rs.getString("phoneNo"));
-		} catch (SQLException e) {
-		}
-		try {
 			csNo.setSex(rs.getInt("sex"));
-		} catch (SQLException e) {
-		}
-		try {
 			pCode.setpName(rs.getString("pName"));
-		} catch (SQLException e) {
-		}
-		try {
 			pCode.setPrice(rs.getInt("price"));
-		} catch (SQLException e) {
-		}
-		try {
 			pCode.setStockAmount(rs.getInt("stockAmount"));
 		} catch (SQLException e) {
 		}
 
-		return new Sale(orderNo, date, csNo, pCode, saleAmount);
+		return new Sale(orderNo, date, csNo, pCode, saleAmount, Selling, Profit);
 	}
 
 	@Override
@@ -204,6 +199,25 @@ public class SaleDaoImpl implements SaleDao {
 				do {
 					list.add(getSale(rs));
 				} while (rs.next());
+				return list;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Sale> selectViewAll() {
+		String sql = "select date, csNo, csName, phoneNo, pCode, saleAmount, selling from vw_full_sale";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if(rs.next()) {
+				List<Sale> list = new ArrayList<Sale>();
+				do {
+					list.add(getSale(rs));
+				}while(rs.next());
 				return list;
 			}
 		} catch (SQLException e) {

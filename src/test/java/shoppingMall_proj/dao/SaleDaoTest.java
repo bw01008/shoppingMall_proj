@@ -77,5 +77,29 @@ public class SaleDaoTest {
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);
 	}
+	
+	@Test
+	public void test07selectViewAll() {
+		System.out.printf("%s()%n", "test07selectViewAll");
+		List<Sale> list = dao.selectViewAll();
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
+	}
+	
+	@Test
+	public void test08selectViewByProduct() {
+		System.out.printf("%s()%n", "test08selectViewByProduct()");
+		List<Sale> list = dao.selectViewByProduct();
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
+	}
+	
+	@Test
+	public void test09selectViewByDetail() {
+		System.out.printf("%s()%n", "test09selectViewByDetail()");
+		List<Sale> list = dao.selectViewByDetail();
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
+	}
 
 }

@@ -6,16 +6,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import shoppingMall_proj.Salepanel.SBD.SearchByDetail_ResultPanel;
-import shoppingMall_proj.Salepanel.SBD.SearchByDetail_TablePanel;
-import shoppingMall_proj.Salepanel.SBD.SearchByDetail_searchPanel;
+import shoppingMall_proj.ResultPanel.SearchByDetail_ResultPanel;
+import shoppingMall_proj.SearchPanel.SearchByDetail_searchPanel;
+import shoppingMall_proj.service.SaleService;
+import shoppingMall_proj.Tablepanel.SaleByDetailTablePanel;
 
 @SuppressWarnings("serial")
 public class SearchByDetail_Main extends JFrame {
 
 	private JPanel contentPane;
-
+	private SaleService service;
+	
 	public SearchByDetail_Main() {
+		service = new SaleService();
 		initialize();
 	}
 	private void initialize() {
@@ -30,11 +33,14 @@ public class SearchByDetail_Main extends JFrame {
 		SearchByDetail_searchPanel pNorth = new SearchByDetail_searchPanel();
 		contentPane.add(pNorth, BorderLayout.NORTH);
 		
-		SearchByDetail_TablePanel pCenter = new SearchByDetail_TablePanel();
-		contentPane.add(pCenter, BorderLayout.CENTER);
-		
+
 		SearchByDetail_ResultPanel pSouth = new SearchByDetail_ResultPanel();
 		contentPane.add(pSouth, BorderLayout.SOUTH);
+		
+		SaleByDetailTablePanel pCenter = new SaleByDetailTablePanel();
+		contentPane.add(pCenter, BorderLayout.CENTER);
+		pCenter.setService(service);
+		pCenter.loadData();
 	}
 
 }

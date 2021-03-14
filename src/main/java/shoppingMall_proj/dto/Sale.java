@@ -31,6 +31,18 @@ public class Sale {
 		this.pCode = pCode;
 		this.saleAmount = saleAmount;
 	}
+	
+	
+
+	public Sale(int orderNo, String date, Customer csNo, Product pCode, int saleAmount, int selling, int profit) {
+		this.orderNo = orderNo;
+		this.date = date;
+		this.csNo = csNo;
+		this.pCode = pCode;
+		this.saleAmount = saleAmount;
+		Selling = selling;
+		Profit = profit;
+	}
 
 	// Getter / Setter
 	public int getOrderNo() {
@@ -128,8 +140,7 @@ public class Sale {
 	// toString
 	@Override
 	public String toString() {
-		return String.format("Sale [orderNo=%s, date=%s, csNo=%s, pCode=%s, saleAmount=%s]", orderNo, date, csNo, pCode,
-				saleAmount);
+		return String.format("Sale [orderNo=%s, date=%s, csNo=%s, pCode=%s, saleAmount=%s]", orderNo, date, csNo, pCode,saleAmount);
 	}
 
 }

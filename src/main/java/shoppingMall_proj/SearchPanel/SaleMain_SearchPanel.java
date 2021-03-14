@@ -1,5 +1,6 @@
-package shoppingMall_proj.Salepanel;
+package shoppingMall_proj.SearchPanel;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +16,9 @@ import shoppingMall_proj.UISale.SearchByDetail_Main;
 import shoppingMall_proj.UISale.SearchByProduct_Main;
 import shoppingMall_proj.UISale.Summary_Main;
 
-import java.awt.Font;
-
 @SuppressWarnings("serial")
 public class SaleMain_SearchPanel extends JPanel implements ActionListener {
+	
 	private JButton btnProduct;
 	private JButton btnDetail;
 	private JButton btnSummary;

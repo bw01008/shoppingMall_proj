@@ -1,21 +1,18 @@
 package shoppingMall_proj;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
-import shoppingMall_proj.UISale.Sale_Main;
-
-import javax.swing.JTabbedPane;
+import shoppingMall_proj.UISale.SaleMainPanel;
 
 @SuppressWarnings("serial")
 public class Shopping_Main extends JFrame {
 
 	private JPanel contentPane;
-
 
 	public Shopping_Main() {
 		initialize();
@@ -38,8 +35,12 @@ public class Shopping_Main extends JFrame {
 		JPanel pProduct = new JPanel();
 		tabbedPane.addTab("상품 관리", null, pProduct, "상품 관리");
 		
-		Sale_Main pSale = new Sale_Main();
+		SaleMainPanel pSale = new SaleMainPanel();
 		tabbedPane.addTab("판매 관리", null, pSale, "판매 관리");
+		
+		
+		
+		
 	}
 
 }

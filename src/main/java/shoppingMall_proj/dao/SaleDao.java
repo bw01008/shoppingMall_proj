@@ -19,4 +19,6 @@ public interface SaleDao {
 	List<Sale> selectViewByDate(Sale sale);
 	List<Sale> selectViewByProduct();
 	List<Sale> selectViewByDetail();
+	
+	List<Sale> selectViewAll();
 }

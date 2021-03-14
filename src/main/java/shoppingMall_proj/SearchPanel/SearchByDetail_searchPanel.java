@@ -1,4 +1,4 @@
-package shoppingMall_proj.Salepanel.SBD;
+package shoppingMall_proj.SearchPanel;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;

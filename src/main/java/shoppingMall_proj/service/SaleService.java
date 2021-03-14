@@ -17,7 +17,9 @@ public class SaleService {
 		return dao.selectViewByProduct();
 	}
 	//상세조회
-	public List<Sale> showSaleDetileView(){
-		return dao.selectViewByDetail();
+	public List<Sale> showSaleDetaileView(){
+		List<Sale> list = dao.selectViewByDetail();
+		System.out.println(list);
+		return list;
 	}
 }

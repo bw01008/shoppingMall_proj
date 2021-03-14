@@ -9,17 +9,18 @@ public class SaleByDetailTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 	
 	@Override
 	public void initList() {
-		list = service.showSaleDetileView();
+		list = service.showSaleDetaileView();
 	}
 
 	@Override
 	public String[] getColumnNames() {
-		return new String[] {"날짜", "제품코드", "제품명", "회원명", "주문수량", "단가", "판매액", "이익금액"};
+		return new String[] {"번호", "날짜", "제품코드", "제품명", "회원명", "주문수량", "단가", "판매액", "이익금액"};
 	}
 
 	@Override
 	public Object[] toArray(Sale t) {
 		return new Object[] {
+				(t.getOrderNo() + ""),
 				t.getDate(),
 				String.valueOf(t.getpCode().getpCode()),
 				String.valueOf(t.getpCode().getpName()),
@@ -30,11 +31,25 @@ public class SaleByDetailTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 				(t.getProfit() + "")
 		};
 	}
-
+	
+	@Override
+	public void setList() {
+		Object[][] data = new Object[list.size()][];
+		int i = 0;
+		for (i = 0; i < data.length; i++) {
+			data[i] = toArray(list.get(i));
+		}
+		
+		CustomTableModel model = new CustomTableModel(data, getColumnNames());
+		table.setModel(model);
+		
+	}
+	
 	public void setService(SaleService service) {
 		this.service = service;
 		
 	}
+
 	
 	
 

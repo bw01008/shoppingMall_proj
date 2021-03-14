@@ -10,9 +10,8 @@ public class SaleByProductTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 	@Override
 	public void initList() {
 		list = service.showSaleProductView();
-		System.out.println(list);
 	}
-
+	
 	@Override
 	public String[] getColumnNames() {
 		return new String[]{"날짜", "제품코드", "제품명", "주문수량", "단가", "판매액", "이익금액"};
@@ -30,9 +29,23 @@ public class SaleByProductTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 				(t.getProfit() + "")
 		};
 	}
-
+	
+	@Override
+	public void setList() {
+		Object[][] data = new Object[list.size()][];
+		
+		for (int i = 0; i < data.length; i++) {
+			data[i] = toArray(list.get(i));
+		}
+		
+		CustomTableModel model = new CustomTableModel(data, getColumnNames());
+		table.setModel(model);
+	}
+	
 	public void setService(SaleService service) {
 		this.service = service;
 	}
+
+
 
 }

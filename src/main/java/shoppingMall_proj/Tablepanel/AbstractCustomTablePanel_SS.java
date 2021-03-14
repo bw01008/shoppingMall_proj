@@ -57,21 +57,21 @@ public abstract class AbstractCustomTablePanel_SS<T> extends JPanel {
 
 	public abstract String[] getColumnNames();
 
-	public void setList() {
-		Object[][] data = new Object[list.size()][];
+	public abstract void setList();
+//		Object[][] data = new Object[list.size()][];
+//		
+//		for (int i = 0; i < data.length; i++) {
+//			data[i] = toArray(list.get(i));
+//		}
+//		
+//		CustomTableModel model = new CustomTableModel(data, getColumnNames());
+//		table.setModel(model);
 		
-		for (int i = 0; i < data.length; i++) {
-			data[i] = toArray(list.get(i));
-		}
-		
-		CustomTableModel model = new CustomTableModel(data, getColumnNames());
-		table.setModel(model);
-		
-	}
+	
 
 	public abstract Object[] toArray(T t);
 
-	private class CustomTableModel extends DefaultTableModel {
+	protected class CustomTableModel extends DefaultTableModel {
 
 		public CustomTableModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNames);

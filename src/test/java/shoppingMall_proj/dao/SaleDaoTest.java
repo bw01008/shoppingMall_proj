@@ -96,7 +96,7 @@ public class SaleDaoTest {
 	
 	@Test
 	public void test09selectViewByDetail() {
-		System.out.printf("%s()%n", "test09selectViewByDetail()");
+		System.out.printf("%s()%n", "test09selectViewByDetail");
 		List<Sale> list = dao.selectViewByDetail();
 		Assert.assertNotNull(list);
 		list.stream().forEach(System.out::println);

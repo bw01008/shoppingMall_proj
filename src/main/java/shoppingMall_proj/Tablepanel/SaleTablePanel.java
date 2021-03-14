@@ -17,7 +17,7 @@ public class SaleTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 
 		return new String[] {
 				t.getDate(), 
-				String.valueOf(t.getCsNo()),
+				String.valueOf(t.getCsNo().getCsNo()),
 				String.valueOf(t.getCsNo().getCsName()), 
 				String.valueOf(t.getCsNo().getPhoneNo()),
 				String.valueOf(t.getpCode().getpCode()), 
@@ -31,9 +31,24 @@ public class SaleTablePanel extends AbstractCustomTablePanel_SS<Sale> {
 	public void initList() {
 		list = service.showSaleMainView();
 	}
+	
+	@Override
+	public void setList() {
+		Object[][] data = new Object[list.size()][];
+		
+		for (int i = 0; i < data.length; i++) {
+			data[i] = toArray(list.get(i));
+		}
+		
+		CustomTableModel model = new CustomTableModel(data, getColumnNames());
+		table.setModel(model);
+		
+	}
 
 	public void setService(SaleService service) {
 		this.service = service;
 	}
+
+	
 
 }

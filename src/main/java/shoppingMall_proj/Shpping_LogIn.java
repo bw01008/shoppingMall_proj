@@ -16,8 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import shoppingMall_proj.dao.Impl.LoginDaoImpl;
 import shoppingMall_proj.dto.Login;
+import shoppingMall_proj.service.LoginService;
 
 @SuppressWarnings("serial")
 public class Shpping_LogIn extends JFrame implements ActionListener {
@@ -26,6 +26,8 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 	private JTextField tfID;
 	private JPasswordField pfPass;
 	private JButton btnLogin;
+	private LoginService service;
+	private JPanel pContent;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,10 +42,8 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Shpping_LogIn() {
+		service = new LoginService();
 		initialize();
 	}
 	private void initialize() {
@@ -65,30 +65,30 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		contentPane.add(pCenter, BorderLayout.CENTER);
 		pCenter.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel panel = new JPanel();
-		pCenter.add(panel);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
+		pContent = new JPanel();
+		pCenter.add(pContent);
+		pContent.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblID = new JLabel("ID");
-		panel.add(lblID);
+		pContent.add(lblID);
 		
 		tfID = new JTextField();
-		panel.add(tfID);
+		pContent.add(tfID);
 		tfID.setColumns(10);
 		
 		JLabel lblPass = new JLabel("Password");
-		panel.add(lblPass);
+		pContent.add(lblPass);
 		
 		pfPass = new JPasswordField();
-		panel.add(pfPass);
+		pContent.add(pfPass);
 		pfPass.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		pCenter.add(panel_1);
+		JPanel pBtn = new JPanel();
+		pCenter.add(pBtn);
 		
 		btnLogin = new JButton("로그인");
 		btnLogin.addActionListener(this);
-		panel_1.add(btnLogin);
+		pBtn.add(btnLogin);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -96,23 +96,36 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 			actionPerformedBtnLogin(arg0);
 		}
 	}
+	
+	private Login getLogin() {
+		String ID = new String(tfID.getText().trim());
+		String password = new String(pfPass.getPassword());
+		return new Login(ID, password);
+	}
+	
 	protected void actionPerformedBtnLogin(ActionEvent arg0) {
+		Login logTry = getLogin();
+		Login  logInfo = service.LoginInfo(logTry);
 		
-		
-		String ID = tfID.getText();
-		
-		String ps1 = new String(pfPass.getPassword());
-				
-		if(true) {
+		if(logTry.equals(logInfo)) {
 			Shopping_Main frame = new Shopping_Main();
 			frame.setVisible(true);
-			
-			
+
 		}else {
-			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
+			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
 			tfID.setText("");
 			pfPass.setText("");
 			tfID.requestFocus();
 		}
+
+		
+
+//		if(logTry.equals(obj)) {
+//			
+//			
+//			
+//		}else {
+//			
+//		}
 	}
 }

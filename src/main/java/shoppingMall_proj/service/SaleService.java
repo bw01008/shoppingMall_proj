@@ -22,4 +22,6 @@ public class SaleService {
 		System.out.println(list);
 		return list;
 	}
+	
+
 }

@@ -9,7 +9,6 @@ import java.util.List;
 
 import shoppingMall_proj.dao.LoginDao;
 import shoppingMall_proj.dto.Login;
-import shoppingMall_proj.dto.Product;
 import shoppingMall_proj.dto.util.JdbcUtil;
 
 public class LoginDaoImpl implements LoginDao {
@@ -25,7 +24,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public List<Login> selectProductByAll() {
+	public List<Login> selectLoginByAll() {
 		String sql = "select ID, password from login";
 		try(Connection con = JdbcUtil.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -50,7 +49,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public Login selectProductByID(Login log) {
+	public Login selectLoginByID(Login log) {
 		String sql = "select ID, password from login where ID = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -68,7 +67,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public int insertProduct(Login log) {
+	public int insertLogin(Login log) {
 		String sql = "insert into login values(?, ?)";
 		try(Connection con = JdbcUtil.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -82,7 +81,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public int updateProduct(Login log) {
+	public int updateLogin(Login log) {
 		String sql = "update login set password = ? where id = ?";
 		try(Connection con = JdbcUtil.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)){
@@ -96,8 +95,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public int deleteProduct(String ID) {
-		// TODO Auto-generated method stub
+	public int deleteLogin(String ID) {
 		return 0;
 	}
 

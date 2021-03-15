@@ -40,20 +40,20 @@ public abstract class AbstractCustomTablePanel_SS<T> extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
-		table.setModel(getModel()); // getModel로 빼기
+//		table.setModel(getModel()); // getModel로 빼기
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(table);
 	}
 	
-	public DefaultTableModel getModel() {
-		CustomTableModel model = new CustomTableModel(getData(), getColumnNames());
-		return model;
-	}// end of getModel()
+//	public DefaultTableModel getModel() {
+//		CustomTableModel model = new CustomTableModel(getData(), getColumnNames());
+//		return model;
+//	}// end of getModel()
 
-	public Object[][] getData() {
-		return new Object[][] { {null, null, null, null, null, null, null}, };
-
-	}// end of getData()
+//	public Object[][] getData() {
+//		return new Object[][] { {}, };
+//
+//	}// end of getData()
 
 	public abstract String[] getColumnNames();
 

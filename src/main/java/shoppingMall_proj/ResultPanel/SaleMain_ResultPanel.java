@@ -1,12 +1,11 @@
 package shoppingMall_proj.ResultPanel;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
-
-import shoppingMall_proj.dto.Sale;
-
 import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import shoppingMall_proj.Tablepanel.SaleTablePanel;
 
 @SuppressWarnings("serial")
 public class SaleMain_ResultPanel extends JPanel {
@@ -31,6 +30,7 @@ public class SaleMain_ResultPanel extends JPanel {
 		
 		lblTotalSaleAmount2 = new JLabel("");
 		pLeft.add(lblTotalSaleAmount2);
+		
 //		lblTotalSaleAmount2.setText();	- 총 주문 수량 결과
 		
 		

@@ -64,3 +64,5 @@ update product set stockAmount = 98 where pCode = (select pCode from sale where 
 update sale set saleAmount = 2 where orderNo = 1;
 
 select date, pCode, pName, csNo, csName, saleAmount, price, selling, profit from vw_full_sale;
+
+select * from login;

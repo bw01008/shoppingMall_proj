@@ -15,6 +15,8 @@ import com.toedter.calendar.JDateChooser;
 import shoppingMall_proj.UISale.SearchByDetail_Main;
 import shoppingMall_proj.UISale.SearchByProduct_Main;
 import shoppingMall_proj.UISale.Summary_Main;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class SaleMain_SearchPanel extends JPanel implements ActionListener {
@@ -43,37 +45,44 @@ public class SaleMain_SearchPanel extends JPanel implements ActionListener {
 		lblTitle.setFont(new Font("굴림", Font.BOLD, 30));
 		pLeft.add(lblTitle);
 		
-		JPanel pRightTop = new JPanel();
-		add(pRightTop);
-		pRightTop.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel pRight = new JPanel();
+		add(pRight);
+		pRight.setLayout(new GridLayout(0, 1, 10, 10));
 		
-		JPanel panel_2 = new JPanel();
-		pRightTop.add(panel_2);
+		JPanel pRightLeft = new JPanel();
+		pRight.add(pRightLeft);
 		
 		btnProduct = new JButton("제품별 조회");
 		btnProduct.addActionListener(this);
-		panel_2.add(btnProduct);
+		pRightLeft.setLayout(new GridLayout(0, 3, 10, 10));
+		pRightLeft.add(btnProduct);
 		
 		btnDetail = new JButton("상세조회");
 		btnDetail.addActionListener(this);
-		panel_2.add(btnDetail);
+		pRightLeft.add(btnDetail);
 		
 		btnSummary = new JButton("Summary");
 		btnSummary.addActionListener(this);
-		panel_2.add(btnSummary);
+		pRightLeft.add(btnSummary);
 		
 		JPanel pRightBottom = new JPanel();
-		pRightTop.add(pRightBottom);
+		pRight.add(pRightBottom);
+		pRightBottom.setLayout(new GridLayout(0, 3, 10, 10));
 		
 		JLabel lblDate = new JLabel("날짜별 조회");
+		lblDate.setHorizontalAlignment(SwingConstants.CENTER);
 		pRightBottom.add(lblDate);
 		
-		dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser(new Date());
 		pRightBottom.add(dateChooser);
 		
+		JPanel panel = new JPanel();
+		pRightBottom.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
 		btnSearch = new JButton("검색");
+		panel.add(btnSearch);
 		btnSearch.addActionListener(this);
-		pRightBottom.add(btnSearch);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

@@ -20,10 +20,11 @@ public class SaleMain_ResultPanel extends JPanel {
 		initialize();
 	}
 	private void initialize() {
-		setLayout(new GridLayout(0, 2, 0, 0));
+		setLayout(new GridLayout(0, 2, 10, 0));
 		
 		JPanel pLeft = new JPanel();
 		add(pLeft);
+		pLeft.setLayout(new GridLayout(0, 2, 10, 10));
 		
 		JLabel lblTotalSaleAmount1 = new JLabel("총 주문수량 : ");
 		pLeft.add(lblTotalSaleAmount1);
@@ -36,6 +37,7 @@ public class SaleMain_ResultPanel extends JPanel {
 		
 		JPanel pRight = new JPanel();
 		add(pRight);
+		pRight.setLayout(new GridLayout(0, 2, 10, 10));
 		
 		JLabel lblTotalSelling1 = new JLabel("총 판매액 : ");
 		pRight.add(lblTotalSelling1);

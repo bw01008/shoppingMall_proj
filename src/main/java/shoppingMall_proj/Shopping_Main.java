@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 
 import shoppingMall_proj.UISale.SaleMainPanel;
+import shoppingMall_proj.UICustomer.CustomerMainPanel;
 
 @SuppressWarnings("serial")
 public class Shopping_Main extends JFrame {
@@ -29,7 +30,7 @@ public class Shopping_Main extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-		JPanel pCustomer = new JPanel();
+		CustomerMainPanel pCustomer = new CustomerMainPanel();
 		tabbedPane.addTab("고객 관리", null, pCustomer, "고객 관리");
 		
 		JPanel pProduct = new JPanel();

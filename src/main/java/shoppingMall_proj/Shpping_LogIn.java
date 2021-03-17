@@ -111,7 +111,7 @@ public class Shpping_LogIn extends JFrame implements ActionListener {
 		if (logTry.equals(logInfo)) {
 			Shopping_Main frame = new Shopping_Main();
 			frame.setVisible(true);
-
+			dispose(); // 로그인 성공시 로그인 창 자동으로 닫기기능
 		} else {
 			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.", "로그인 실패", JOptionPane.WARNING_MESSAGE);
 			tfID.setText("");

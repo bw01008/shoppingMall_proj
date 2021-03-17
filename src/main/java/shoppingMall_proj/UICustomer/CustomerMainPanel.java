@@ -2,7 +2,11 @@ package shoppingMall_proj.UICustomer;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
 
+@SuppressWarnings("serial")
 public class CustomerMainPanel extends JPanel {
 
 	/**
@@ -15,18 +19,15 @@ public class CustomerMainPanel extends JPanel {
 	private void initialize() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JPanel pTop = new JPanel();
+		CsContentPanel pTop = new CsContentPanel();
 		add(pTop);
-		pTop.setLayout(new GridLayout(0, 2, 0, 0));
+		pTop.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JPanel pTopRight = new JPanel();
-		pTop.add(pTopRight);
-		
-		JPanel pTopLeft = new JPanel();
-		pTop.add(pTopLeft);
-		
-		JPanel pSouth = new JPanel();
+		CsSearchPanel pSouth = new CsSearchPanel();
 		add(pSouth);
+		
+		JPanel panel = new JPanel();
+		add(panel);
 	}
 
 }

@@ -39,7 +39,7 @@ public class CsContentPanel extends JPanel {
 		
 		JPanel pCenter = new JPanel();
 		add(pCenter, BorderLayout.CENTER);
-		pCenter.setLayout(new GridLayout(0, 2, 10, 10));
+		pCenter.setLayout(new GridLayout(0, 4, 10, 10));
 		
 		JLabel lblCsno = new JLabel("회원번호");
 		lblCsno.setHorizontalAlignment(SwingConstants.RIGHT);
